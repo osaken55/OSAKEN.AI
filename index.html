@@ -11,6 +11,63 @@
             box-sizing: border-box;
         }
 
+        /* ナビゲーションヘッダーのスタイル */
+        .nav-header {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #3498db;
+        }
+
+        /* ハンバーガーメニュー */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* 既存のスタイル */
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
@@ -23,6 +80,7 @@
             color: white;
             padding: 2rem 0;
             text-align: center;
+            margin-top: 60px;
         }
 
         .container {
@@ -85,7 +143,42 @@
             margin-top: 4rem;
         }
 
+        /* レスポンシブデザイン */
         @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                padding: 1rem 0;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            /* ハンバーガーメニューのアニメーション */
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
             .container {
                 padding: 0 1rem;
             }
@@ -97,6 +190,24 @@
     </style>
 </head>
 <body>
+    <!-- ナビゲーションヘッダー -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="#" class="logo">OSAKEN.AI</a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-menu">
+                <a href="#about">About</a>
+                <a href="#mission">Mission</a>
+                <a href="#specialization">Specialization</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
     <header>
         <div class="container">
             <div class="hero">
@@ -109,7 +220,7 @@
 
     <div class="container">
         <div class="main-content">
-            <section class="section">
+            <section id="about" class="section">
                 <h2>About Me</h2>
                 <p>
                     エグゼクティブコーチとして、経営者の皆様の生成AI導入・活用をサポートしています。
@@ -117,7 +228,7 @@
                 </p>
             </section>
 
-            <section class="section mission">
+            <section id="mission" class="section mission">
                 <h2>Mission</h2>
                 <p>
                     <span class="highlight">生成AI × コーチング</span>を通じて、
@@ -126,7 +237,7 @@
                 </p>
             </section>
 
-            <section class="section">
+            <section id="specialization" class="section">
                 <h2>Specialization</h2>
                 <ul style="list-style: none; padding-left: 0;">
                     <li>✓ 生成AI導入コンサルティング</li>
@@ -143,5 +254,26 @@
             <p>© 2024 OSAKEN.AI - 長田賢一郎</p>
         </div>
     </footer>
+
+    <!-- JavaScriptの追加 -->
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // モバイルメニューを閉じる
+                document.querySelector('.hamburger').classList.remove('active');
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
