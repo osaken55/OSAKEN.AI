@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「AIの向こう側には、あなたがいる。」津カントリー倶楽部 特別企画</title>
+    <style>
+        :root {
+            --primary-color: #4169e1;
+            --accent-color: #ff7f50;
+            --bg-light: #f0f8ff;
+            --text-dark: #333;
+            --text-light: #fff;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #7f00ff);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 1rem 4rem;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .header-graphic {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header-graphic img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .overview {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 3rem 2rem 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .event-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .detail-item {
+            flex-basis: 200px;
+            background-color: rgba(65, 105, 225, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .detail-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        
+        .detail-item h3 {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .detail-item p {
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        section {
+            margin: 4rem 0;
+        }
+        
+        h2 {
+            text-align: center;
+            position: relative;
+            margin-bottom: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            flex-basis: 250px;
+            flex-grow: 1;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        
+        .benefit-icon {
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(65, 105, 225, 0.1);
+        }
+        
+        .benefit-icon img {
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+        }
+        
+        .benefit-content {
+            padding: 1.5rem;
+        }
+        
+        .benefit-content h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .schedule {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        
+        .timeline {
+            margin: 2rem 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-time {
+            flex: 0 0 100px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--primary-color);
+            padding-bottom: 1rem;
+        }
+        
+        .timeline-content h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content p {
+            margin: 0;
+        }
+        
+        .bonuses {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .bonus-card {
+            flex-basis: 300px;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .bonus-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .bonus-content {
+            padding: 1.5rem;
+        }
+        
+        .bonus-content ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+        
+        .bonus-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff6347;
+            transform: scale(1.05);
+        }
+        
+        .instructor {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .instructor-image {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+        
+        .instructor-image img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .instructor-bio {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .instructor-bio h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            width: 200px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .detail-item {
+                flex-basis: 100%;
+            }
+            
+            .benefit-card, .bonus-card {
+                flex-basis: 100%;
+            }
+            
+            .instructor {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-time {
+                flex: 0 0 70px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>「AIの向こう側には、あなたがいる。」</h1>
+            <p class="subtitle">これまで言葉にできなかった自分を、ちょっとだけ勇気づけてくれる生成AIの不思議な時間</p>
+            <p>津カントリー倶楽部 特別企画</p>
+        </div>
+        <div class="header-graphic">
+            <img src="images/tsu-cc-logo.jpeg" alt="津カントリー倶楽部ロゴ">
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="overview">
+            <h2>セミナー概要</h2>
+            <p>生成AIを難しい言葉ではなく「対話する相棒」として、あなたのゴルフライフや日常をより豊かにする方法をお伝えします。<br>技術的な話よりも、<strong>「あなた自身の言葉」</strong>を大切にする、新しいタイプのAI入門講座です。</p>
+            
+            <div class="event-details">
+                <div class="detail-item">
+                    <i class="far fa-calendar-alt"></i>
+                    <h3>開催日時</h3>
+                    <p>2025年4月7日(月)<br>13:00～15:00</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>開催場所</h3>
+                    <p>津カントリー倶楽部<br>2階プレジデントルーム</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-yen-sign"></i>
+                    <h3>参加費</h3>
+                    <p>一般: 5,000円<br>メンバー: 3,500円</p>
+                </div>
+            </div>
+        </div>
+        
+        <section>
+            <h2>このセミナーで得られること</h2>
+            <div class="benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <img src="images/mirror.jpg" alt="AIとの対話">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>AIを「鏡」として活用する方法</h3>
+                        <p>生成AIを単なるツールではなく、あなたの言葉を反映する「鏡」として活用し、自分自身への理解を深める方法を学びます。</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <img src="images/wordless.jpg"  alt="セルフディスカバリー">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>言葉にできない思いの発見</h3>
+                        <p>普段は言葉にしない「ゴルフへの思い」や「日常で大切にしていること」を、AIとの対話を通じて見つけ出します。</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <img src="images/chatgpts.jpg" alt="ChatGPTスキル">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>ChatGPTの基本的な使い方</h3>
+                        <p>画面共有でシンプルな操作方法を示しながら、すぐに使える実践的なAIの活用方法を丁寧に解説します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="schedule">
+            <h2>2時間コースのカリキュラム</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">第1部<br>20分</div>
+                    <div class="timeline-content">
+                        <h3>「はじめまして、AIさん」</h3>
+                        <p>温かい自己紹介で場を和ませながら、生成AIとは何か？を「対話する相棒」として紹介します。参加者の不安や期待を軽く聞き取り、安心して学べる環境を作ります。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">第2部<br>70分</div>
+                    <div class="timeline-content">
+                        <h3>「自分を言葉にしてみる」ワークショップ</h3>
+                        <p>「普段は言わない自分のこと」をメモするミニワークから始め、ChatGPTの基本的な使い方を丁寧に説明。その後、実際に各自でChatGPTに自己紹介の手助けをしてもらう実践を行います。周りのサポートスタッフがきめ細かく支援し、成功体験を積み重ねていきます。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">第3部<br>20分</div>
+                    <div class="timeline-content">
+                        <h3>「思いがけない自分との出会い」</h3>
+                        <p>参加者からの発見や気づきを丁寧に拾い上げ、小グループでの共有を行います。「言葉にしてみると、自分でも気づかなかった大切なものが見えてくる」という視点を提供します。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">第4部<br>20分</div>
+                    <div class="timeline-content">
+                        <h3>「これから広がる可能性」（華やかなデモ）</h3>
+                        <p>驚きと期待を生むゴルフ場関係者・メンバーに響くデモンストレーションを3つ程度ご紹介。「あなただけのゴルフ上達プラン」の作成や「理想のコースデザイン」のビジュアル化など、実践的な活用例をお見せします。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">第5部<br>10分</div>
+                    <div class="timeline-content">
+                        <h3>「これからの対話の時間」</h3>
+                        <p>質疑応答と次回講座の予告を行います。「今日の小さな一歩が、明日の大きな楽しみにつながりますように」という想いを共有して締めくくります。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>参加者だけの3つの特典</h2>
+            <div class="bonuses">
+                <div class="bonus-card">
+                    <div class="bonus-header">
+                        <h3>特典 1</h3>
+                    </div>
+                    <div class="bonus-content">
+                        <h4>誰でも使える「8+1のプロンプト公式」</h4>
+                        <ul>
+                            <li>前提条件：「何のために、誰が、誰に」</li>
+                            <li>対象プロファイル：「どんな人のために」</li>
+                            <li>参考情報：「こういうのを参考に」</li>
+                            <li>名詞と動詞：「何を」「どうする」</li>
+                            <li>形容詞：「どんな感じで」</li>
+                            <li>出力形式：「こんな形で答えて」</li>
+                            <li>例の提示：「こんな感じで」</li>
+                            <li>スタイル：「こんな言葉遣いで」</li>
+                            <li>追加指示：「それから、こうしてほしい」</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-header">
+                        <h3>特典 2</h3>
+                    </div>
+                    <div class="bonus-content">
+                        <h4>多様な心理タイプに響く言葉選び</h4>
+                        <ul>
+                            <li>目標達成を重視する人向けの表現</li>
+                            <li>リスク回避を意識する人向けの表現</li>
+                            <li>行動を促す効果的な言葉選び</li>
+                            <li>思考を深める問いかけの技術</li>
+                            <li>自分の感覚を大切にする人への伝え方</li>
+                            <li>選択肢の提示方法のコツ</li>
+                            <li>手順を明確に伝える表現テクニック</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-header">
+                        <h3>特典 3</h3>
+                    </div>
+                    <div class="bonus-content">
+                        <h4>18秒で言える「すごい自己紹介GPTs」</h4>
+                        <p>簡単な質問に答えるだけで、相手に「会いたい！」と思わせる自己紹介を作れるAIツールをご提供します。</p>
+                        <ul>
+                            <li>未来：自分の提供できる「未来」</li>
+                            <li>過去：未来を提供してきた証明</li>
+                            <li>現在：聞き手にとって価値ある行動</li>
+                            <li>効果：ほぼ100%の確率でインソールの製作を依頼</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="instructor">
+            <div class="instructor-image">
+                <img src="images/osakenPhoto11.png" alt="講師イメージ">
+            </div>
+            <div class="instructor-bio">
+                <h3>講師プロフィール</h3>
+                <p><strong>長田賢一郎（オサケン）</strong>氏</p>
+                <p>ゴルフ場経営者向けのコンサルティング・アドバイザー業務や、生成AIを活用した新規ビジネスの開発・支援を行う。心理学セミナー運営会社へのコンサルティングやAI活用講座の企画・運営も手がける。</p>
+                <p><strong>ミッション：</strong>「AIはただの道具じゃない。それは、あなたの未来を変える魔法の杖だ。言葉とテクノロジーで、笑顔と希望が生まれる瞬間をつくる。」</p>
+            </div>
+        </div>
+        
+        <div class="cta">
+            <h2>お申し込みはこちら</h2>
+            <p>定員に限りがありますので、お早めにお申し込みください。</p>
+            <a href="https://forms.gle/exampleFormUrl" class="btn-primary" target="_blank">今すぐ申し込む <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="logo">
+            <img src="/api/placeholder/200/80" alt="津カントリー倶楽部ロゴ">
+        </div>
+        <p>津カントリー倶楽部 〒514-0000 三重県津市○○町1234</p>
+        <p>TEL: 059-123-4567 | Email: info@tsu-cc.com</p>
+        <p>&copy; 2025 津カントリー倶楽部 All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

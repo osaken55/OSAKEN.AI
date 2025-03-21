@@ -3,7 +3,7 @@ flowchart TD
 
     %% --- カラー定義（クラス） ---
     classDef pastelPink fill:#FFC0CB,stroke:#FF99CC,color:#000,stroke-width:2px
-    classDef pastelGreen fill:#CCFFCC,stroke:#99CC99,color:#000,stroke-width:2px
+    classDef pastelGreen fill:#CCFFCC,stroke:#99CC99,color:#000,stroke-width:px
     classDef pastelBlue fill:#ADD8E6,stroke:#87CEEB,color:#000,stroke-width:2px
     classDef pastelYellow fill:#FFFFE0,stroke:#F0E68C,color:#000,stroke-width:2px
     classDef pastelOrange fill:#FFDAB9,stroke:#FFA07A,color:#000,stroke-width:2px
@@ -40,3 +40,4 @@ flowchart TD
     H:::pastelPink
     I:::pastelBlue
     J:::pastelGreen
+    
